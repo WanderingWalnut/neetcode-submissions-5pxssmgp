@@ -1,0 +1,25 @@
+class KthLargest:
+    import heapq
+
+    def __init__(self, k: int, nums: List[int]):
+        self.min_heap = []
+        self.k = k
+        
+        for num in nums:
+            heapq.heappush(self.min_heap, num)
+            print(f"init, adding {num}")
+            # Check if over capacity when init
+            if len(self.min_heap) > self.k:
+                heapq.heappop(self.min_heap)
+        
+        
+    def add(self, val: int) -> int:
+        heapq.heappush(self.min_heap, val)
+        
+        if len(self.min_heap) > self.k:
+            heapq.heappop(self.min_heap)
+
+        return self.min_heap[0]
+
+
+        
